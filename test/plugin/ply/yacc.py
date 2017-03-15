@@ -1016,7 +1016,7 @@ class LRParser:
         if not lexer:
             import lex
             print type(lex)
-            lexer = lex.lexer
+            lexer = lex.Lexer()
             print 'type(lexer)', (lexer)
 
         # Set up the lexer and parser objects on pslice
