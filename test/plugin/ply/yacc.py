@@ -330,6 +330,7 @@ class LRParser:
         elif tracking:
             return self.parseopt(input, lexer, debug, tracking, tokenfunc)
         else:
+            print 'input, lexer, type(lexer)',input, lexer, type(lexer)
             return self.parseopt_notrack(input, lexer, debug, tracking, tokenfunc)
 
 
@@ -364,8 +365,10 @@ class LRParser:
 
         # If no lexer was given, we will try to use the lex module
         if not lexer:
-            import lex
-            lexer = lex.Lexer()
+            sys.path.append('/home/varsha/.vim/bundle/test/plugin/ply')
+            sys.path.append('..')
+            #import lex
+            lexer = lex.lexer
 
         # Set up the lexer and parser objects on pslice
         pslice.lexer = lexer
@@ -708,7 +711,9 @@ class LRParser:
 
         # If no lexer was given, we will try to use the lex module
         if not lexer:
-            from . import lex
+            sys.path.append('/home/varsha/.vim/bundle/test/plugin/ply')
+            sys.path.append('..')
+            import lex
             lexer = lex.lexer
 
         # Set up the lexer and parser objects on pslice
@@ -1014,9 +1019,11 @@ class LRParser:
 
         # If no lexer was given, we will try to use the lex module
         if not lexer:
+            sys.path.append('/home/varsha/.vim/bundle/test/plugin/ply')
+            sys.path.append('..')
             import lex
-            print type(lex)
-            lexer = lex.Lexer()
+            print 'type(lex)', type(lex)
+            lexer = lex.lexer()
             print 'type(lexer)', (lexer)
 
         # Set up the lexer and parser objects on pslice
@@ -1025,7 +1032,7 @@ class LRParser:
 
         # If input was supplied, pass to lexer
         if input is not None:
-            print type(input)
+            print 'input type', type(input)
             lexer.input(input)
 
         if tokenfunc is None:
