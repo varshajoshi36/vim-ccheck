@@ -6,7 +6,7 @@ homePath = expanduser("~")
 
 data = string.join(vim.current.buffer, "\n")
 
-filename = homePath+"/.vim/bundle/vim-ccheck/plugin/temporaryBufferCopyFile.c"
+filename = homePath+"/.vim/bundle/vim-ccheck/ftplugin/temporaryBufferCopyFile.c"
 f = open(filename, "w")
 f.write(data)
 f.close()
