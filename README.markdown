@@ -9,8 +9,8 @@ If you don't have a preferred installation method, we recommend installing
 [pathogen.vim](https://github.com/tpope/vim-pathogen), and then simply copy and
 paste:
 
-    cd ~/.vim/bundle git clone
-    https://github.com/Anuradha-Talur/syntax-error-highlighter.git
+    cd ~/.vim/bundle 
+    git clone https://github.com/varshajoshi36/vim-ccheck.git
 
 
 ## Usage
