@@ -1,13 +1,8 @@
 import re
 import sys
 # Build the lexer
-sys.path.append('/home/varsha/.vim/bundle/test/plugin/ply')
-#from ply import *
-#import importlib.util
-#spec = importlib.util.spec_from_file_location("ply", "/home/varsha/.vim/bundle/test/plugin/myparser/ply")
-#lex = importlib.util.module_from_spec(spec)
 sys.path.insert(0, '.')
-import lex
+from ply import lex
 
 #class ansic_lexer (object):
 #    def __init__ (self, error_func):

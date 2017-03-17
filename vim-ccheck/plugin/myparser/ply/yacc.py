@@ -1,5 +1,3 @@
-import sys
-sys.path.append('/home/varsha/.vim/bundle/test/plugin/ply')
 # -----------------------------------------------------------------------------
 # ply: yacc.py
 #
@@ -330,7 +328,6 @@ class LRParser:
         elif tracking:
             return self.parseopt(input, lexer, debug, tracking, tokenfunc)
         else:
-            print 'input, lexer, type(lexer)',input, lexer, type(lexer)
             return self.parseopt_notrack(input, lexer, debug, tracking, tokenfunc)
 
 
@@ -365,9 +362,7 @@ class LRParser:
 
         # If no lexer was given, we will try to use the lex module
         if not lexer:
-            sys.path.append('/home/varsha/.vim/bundle/test/plugin/ply')
-            sys.path.append('..')
-            #import lex
+            from . import lex
             lexer = lex.lexer
 
         # Set up the lexer and parser objects on pslice
@@ -711,9 +706,7 @@ class LRParser:
 
         # If no lexer was given, we will try to use the lex module
         if not lexer:
-            sys.path.append('/home/varsha/.vim/bundle/test/plugin/ply')
-            sys.path.append('..')
-            import lex
+            from . import lex
             lexer = lex.lexer
 
         # Set up the lexer and parser objects on pslice
@@ -1019,12 +1012,8 @@ class LRParser:
 
         # If no lexer was given, we will try to use the lex module
         if not lexer:
-            sys.path.append('/home/varsha/.vim/bundle/test/plugin/ply')
-            sys.path.append('..')
-            import lex
-            print 'type(lex)', type(lex)
-            lexer = lex.lexer()
-            print 'type(lexer)', (lexer)
+            from . import lex
+            lexer = lex.lexer
 
         # Set up the lexer and parser objects on pslice
         pslice.lexer = lexer
@@ -1032,7 +1021,6 @@ class LRParser:
 
         # If input was supplied, pass to lexer
         if input is not None:
-            print 'input type', type(input)
             lexer.input(input)
 
         if tokenfunc is None:
@@ -3259,13 +3247,13 @@ def yacc(method='LALR', debug=yaccdebug, module=None, tabmodule=tab_module, star
             srcfile = tabmodule.__file__
         else:
             if '.' not in tabmodule:
-                srcfile = ''
+                srcfile = pdict['__file__']
             else:
                 parts = tabmodule.split('.')
                 pkgname = '.'.join(parts[:-1])
                 exec('import %s' % pkgname)
                 srcfile = getattr(sys.modules[pkgname], '__file__', '')
-        outputdir = '/home/varsha/.vim/bundle/test/plugin'
+        outputdir = os.path.dirname(srcfile)
 
     # Determine if the module is package of a package or not.
     # If so, fix the tabmodule setting so that tables load correctly

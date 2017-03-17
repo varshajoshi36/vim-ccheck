@@ -263,7 +263,6 @@ class Lexer:
     def begin(self, state):
         if state not in self.lexstatere:
             raise ValueError('Undefined state')
-        print 'state', state
         self.lexre = self.lexstatere[state]
         self.lexretext = self.lexstateretext[state]
         self.lexignore = self.lexstateignore.get(state, '')
@@ -317,7 +316,6 @@ class Lexer:
                 continue
 
             # Look for a regular expression match
-            print 'lexre', self.lexre
             for lexre, lexindexfunc in self.lexre:
                 m = lexre.match(lexdata, lexpos)
                 if not m:
@@ -987,9 +985,7 @@ def lex(module=None, object=None, debug=False, optimize=False, lextab='lextab',
             lexobj.lexstaterenames[state].extend(lexobj.lexstaterenames['INITIAL'])
 
     lexobj.lexstateinfo = stateinfo
-    print 'before lexre?', lexre
     lexobj.lexre = lexobj.lexstatere['INITIAL']
-    print 'created lexre?', lexre
     lexobj.lexretext = lexobj.lexstateretext['INITIAL']
     lexobj.lexreflags = reflags
 

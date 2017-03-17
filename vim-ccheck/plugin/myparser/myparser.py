@@ -1,15 +1,6 @@
 import re
 import sys
-sys.path.append('/home/varsha/.vim/bundle/test/plugin')
-sys.path.append('..')
-#from myparser import clex.py
-#import importlib.util
-#spec = importlib.util.spec_from_file_location("myparser", "/home/varsha/.vim/bundle/test/plugin/myparser")
-#clex = importlib.util.module_from_spec(spec)
-import vim
 import clex
-#import clex
-import string
 # Get the token map
 tokens = clex.tokens
 
@@ -670,11 +661,8 @@ if __name__ == '__main__':
     #yacc.yacc()
 
     yacc.yacc(method='LALR',write_tables=True,debug=True)
-    #filename = sys.argv[1]
-    #f = open(filename)
-    data = string.join(vim.current.buffer, "\n")
-    print type(data)
-    #f.read() 
-    #string.join(vim.current.buffer, "\n")
-    #f.close()
+    filename = sys.argv[1]
+    f = open(filename)
+    data = f.read()
+    f.close()
     yacc.parse(data)
