@@ -7,7 +7,9 @@ tokens = clex.tokens
 start = 'translation_unit'
 ('tokens = ', "['ID', 'CONSTANT', 'STRING_LITERAL', 'SIZEOF', 'PTR_OP', 'INC_OP', 'DEC_OP', 'LEFT_OP', 'RIGHT_OP', 'LE_OP', 'GE_OP', 'EQ_OP', 'NE_OP', 'AND_OP', 'OR_OP', 'MUL_ASSIGN', 'DIV_ASSIGN', 'MOD_ASSIGN', 'ADD_ASSIGN', 'SUB_ASSIGN', 'LEFT_ASSIGN', 'RIGHT_ASSIGN', 'AND_ASSIGN', 'XOR_ASSIGN', 'OR_ASSIGN', 'TYPE_NAME', 'TYPEDEF', 'EXTERN', 'STATIC', 'AUTO', 'REGISTER', 'CHAR', 'SHORT', 'INT', 'LONG', 'SIGNED', 'UNSIGNED', 'FLOAT', 'DOUBLE', 'CONST', 'VOLATILE', 'VOID', 'STRUCT', 'UNION', 'ENUM', 'ELLIPSIS', 'CASE', 'DEFAULT', 'IF', 'ELSE', 'SWITCH', 'WHILE', 'DO', 'FOR', 'GOTO', 'CONTINUE', 'BREAK', 'RETURN']")
 ()
-('precedence = ', '[]')
+precedence = (('nonassoc', 'LOWER_THAN_ELSE'),
+               ('nonassoc', 'ELSE')
+            )
 ()
 # -------------- RULES ----------------
 ()
@@ -582,12 +584,12 @@ def p_expression_statement_2(p):
     '''expression_statement : expression SEMICOLON'''
 ()
 def p_selection_statement_1(p):
-    '''selection_statement : IF LPAREN expression RPAREN statement'''
+    '''selection_statement : IF LPAREN expression RPAREN statement %prec LOWER_THAN_ELSE'''
 ()
-#
-#def p_selection_statement_2(p):
-#    '''selection_statement : IF LPAREN expression RPAREN statement ELSE statement'''
-#()
+
+def p_selection_statement_2(p):
+    '''selection_statement : IF LPAREN expression RPAREN statement ELSE statement %prec ELSE'''
+()
 def p_selection_statement_3(p):
     '''selection_statement : SWITCH LPAREN expression RPAREN statement'''
 ()
