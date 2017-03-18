@@ -61,6 +61,7 @@ keywords = (
     'DOUBLE',
     'DO',
     'ELSE',
+    'LOWER_THAN_ELSE',
     'ENUM',
     'EXTERN',
     'FLOAT',
